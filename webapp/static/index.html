@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Job Search · Workflow Console</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="glow"></div>
+
+<header class="site">
+  <div class="wrap header-inner">
+    <div class="brand">
+      <svg class="mark" viewBox="0 0 48 48" aria-hidden="true">
+        <path d="M6 27l36-15-14 30-3-12-19-3z" fill="none" stroke="currentColor" stroke-width="2.4"
+              stroke-linejoin="round" stroke-linecap="round"/>
+        <circle cx="27" cy="23" r="2.2" fill="currentColor"/>
+      </svg>
+      <div>
+        <h1>AI&nbsp;Job&nbsp;Search <span>Workflow Console</span></h1>
+        <p>Hosted front end for the framework's own deterministic tools. No mock data &mdash; every answer below is computed by this repository.</p>
+      </div>
+    </div>
+    <div class="status" id="status">
+      <span class="dot"></span><span id="status-text">connecting…</span>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs wrap" role="tablist">
+  <button class="tab active" data-panel="guard" role="tab" aria-selected="true">
+    <span class="num">01</span> Posting Guard
+  </button>
+  <button class="tab" data-panel="jobkey" role="tab" aria-selected="false">
+    <span class="num">02</span> Job Key
+  </button>
+  <button class="tab" data-panel="catalog" role="tab" aria-selected="false">
+    <span class="num">03</span> Command Catalog
+  </button>
+</nav>
+
+<main class="wrap">
+
+  <!-- ============ POSTING GUARD ============ -->
+  <section id="panel-guard" class="panel active">
+    <div class="panel-head">
+      <h2>Posting Guard</h2>
+      <p>
+        A job posting is third-party text that an agent reads beside your personal data.
+        This runs <code>tools/posting_guard.py</code> &mdash; the same integrity gate the
+        <code>/apply</code> workflow uses &mdash; to strip hidden and invisible content and
+        surface instruction-shaped payloads <em>before</em> anything is evaluated.
+      </p>
+    </div>
+
+    <div class="split">
+      <div class="card">
+        <div class="card-head">
+          <label for="raw">Fetched posting (raw HTML or plain text)</label>
+        </div>
+        <textarea id="raw" spellcheck="false" placeholder="Paste a job posting here…"></textarea>
+
+        <div class="card-foot">
+          <div class="seg" role="group" aria-label="Input mode">
+            <button class="seg-btn active" data-mode="auto">Auto</button>
+            <button class="seg-btn" data-mode="html">HTML</button>
+            <button class="seg-btn" data-mode="text">Text</button>
+          </div>
+          <button id="run-guard" class="primary">Run guard</button>
+        </div>
+
+        <div class="samples">
+          <span>Try:</span>
+          <button class="chip" data-sample="clean">clean posting</button>
+          <button class="chip" data-sample="injection">hidden injection</button>
+          <button class="chip" data-sample="invisible">zero-width text</button>
+        </div>
+      </div>
+
+      <div class="card result" id="guard-result">
+        <div class="empty" id="guard-empty">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v6c0 4.2-2.9 7.6-7 9-4.1-1.4-7-4.8-7-9V6l7-3z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+          <p>Results appear here.</p>
+          <small>Hidden blocks, instruction-shaped lines, invisible characters and look-alike text are all reported.</small>
+        </div>
+        <div id="guard-body" hidden></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ JOB KEY ============ -->
+  <section id="panel-jobkey" class="panel">
+    <div class="panel-head">
+      <h2>Job Key</h2>
+      <p>
+        <code>/scrape</code> deduplicates postings by a canonical key. This is
+        <code>tools/job_key.py</code>: a pure, deterministic function of company and title, so
+        the same posting always produces the same key &mdash; and two different long titles never collide.
+      </p>
+    </div>
+
+    <div class="split">
+      <div class="card">
+        <div class="field">
+          <label for="company">Company</label>
+          <input id="company" placeholder="Acme Corp" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="title">Job title</label>
+          <input id="title" placeholder="SOC Analyst (L2)" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="url">Posting URL <span class="opt">optional &mdash; used as fallback for non-Latin titles</span></label>
+          <input id="url" placeholder="https://…/job/123456" autocomplete="off">
+        </div>
+        <div class="card-foot">
+          <button id="run-jobkey" class="primary">Generate key</button>
+        </div>
+      </div>
+
+      <div class="card result">
+        <div class="empty" id="jobkey-empty">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 7a4 4 0 10-3.9 5H5v3H2v3h6l2-2h2.1A4 4 0 1014 7z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          <p>The canonical key appears here.</p>
+          <small>Deterministic, path-safe, and length-capped so a long title truncates the same way every run.</small>
+        </div>
+        <div id="jobkey-body" hidden></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CATALOG ============ -->
+  <section id="panel-catalog" class="panel">
+    <div class="panel-head">
+      <h2>Command Catalog</h2>
+      <p>
+        Read live from <code>.claude/commands/</code>, <code>.claude/skills/</code> and
+        <code>.agents/skills/</code> at request time &mdash; this page has no second copy of the
+        framework's metadata to drift out of date.
+      </p>
+    </div>
+    <div id="catalog-body"><div class="empty wide"><p>Loading…</p></div></div>
+  </section>
+
+</main>
+
+<footer class="site wrap">
+  <p>
+    Additive layer &mdash; it does not alter the Claude Code workflow, the skills, or the portal CLIs.
+    Source: <code>webapp/server.py</code>.
+  </p>
+</footer>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
