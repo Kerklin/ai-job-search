@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Job Search</title>
+    <meta
+      name="description"
+      content="AI Job Search is an AI-powered job application framework built on Claude Code. It helps you scrape jobs, evaluate fit, tailor CVs, write cover letters, and prep for interviews."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav">
+        <div class="brand">AI Job Search</div>
+        <nav>
+          <a href="#what-it-is">Overview</a>
+          <a href="#how-it-works">How it works</a>
+          <a href="#commands">Commands</a>
+          <a href="https://github.com/Kerklin/ai-job-search" target="_blank" rel="noreferrer">GitHub</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <p class="eyebrow">The job search that runs on your machine.</p>
+            <h1>AI-powered job applications, tailored for you.</h1>
+            <p class="lead">
+              Built on Claude Code, this framework helps you evaluate job postings, tailor
+              your CV, write cover letters, and prepare for interviews — without handing
+              your search over to a generic recruiting tool.
+            </p>
+            <div class="actions">
+              <a class="button primary" href="https://github.com/Kerklin/ai-job-search" target="_blank" rel="noreferrer">View repository</a>
+              <a class="button secondary" href="https://github.com/Kerklin/ai-job-search/blob/master/README.md" target="_blank" rel="noreferrer">Read full README</a>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-header">Core workflow</div>
+            <ul>
+              <li><span>1</span> /setup builds your profile</li>
+              <li><span>2</span> /scrape finds jobs</li>
+              <li><span>3</span> /rank shortlists matches</li>
+              <li><span>4</span> /apply drafts CV + cover letter</li>
+              <li><span>5</span> /interview prepares you</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="what-it-is" class="section">
+        <div class="container">
+          <h2>What this is</h2>
+          <p>
+            AI Job Search is a structured workflow that turns Claude Code into a full-stack
+            job application assistant. It helps you move from an empty profile to tracked
+            application results with a clear process: evaluate fit, draft materials, verify
+            the outputs, and prep for interviews.
+          </p>
+        </div>
+      </section>
+
+      <section id="how-it-works" class="section alt">
+        <div class="container">
+          <h2>How /apply works</h2>
+          <div class="steps">
+            <div class="card">
+              <h3>1. Parse</h3>
+              <p>Reads the job posting or URL and extracts the key requirements.</p>
+            </div>
+            <div class="card">
+              <h3>2. Evaluate fit</h3>
+              <p>Scores the role against your profile, experience, and constraints.</p>
+            </div>
+            <div class="card">
+              <h3>3. Draft</h3>
+              <p>Generates a tailored CV and cover letter in a controlled workflow.</p>
+            </div>
+            <div class="card">
+              <h3>4. Review + revise</h3>
+              <p>Runs a reviewer pass to catch gaps and improves the final output.</p>
+            </div>
+            <div class="card">
+              <h3>5. Compile + verify</h3>
+              <p>Checks PDF output quality, text extraction, and ATS-friendliness.</p>
+            </div>
+            <div class="card">
+              <h3>6. Present</h3>
+              <p>Delivers the final package with a verification checklist.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="commands" class="section">
+        <div class="container">
+          <h2>Core commands</h2>
+          <div class="command-grid">
+            <div class="command-item"><strong>/setup</strong><span>Build your profile from documents or a CV.</span></div>
+            <div class="command-item"><strong>/scrape</strong><span>Search job portals for matching roles.</span></div>
+            <div class="command-item"><strong>/rank</strong><span>Score and shortlist matches.</span></div>
+            <div class="command-item"><strong>/apply</strong><span>Tailor CV and cover letter to a specific role.</span></div>
+            <div class="command-item"><strong>/interview</strong><span>Prepare stage-specific interview material.</span></div>
+            <div class="command-item"><strong>/outcome</strong><span>Track results and archive applications.</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section alt cta-section">
+        <div class="container cta-box">
+          <div>
+            <h2>Start from the project repository</h2>
+            <p>
+              The full setup guide, commands, and customization details live in the repo.
+            </p>
+          </div>
+          <a class="button primary" href="https://github.com/Kerklin/ai-job-search" target="_blank" rel="noreferrer">Open on GitHub</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>AI Job Search · The job search that runs on your machine.</p>
+      </div>
+    </footer>
+  </body>
+</html>
